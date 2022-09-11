@@ -4,13 +4,14 @@ import Container from "../components/container";
 import MoreStories from "../components/more-stories";
 import HeroPost from "../components/hero-post";
 import Intro from "../components/intro";
+import AboutJaysoft from "../components/aboutjaysoft";
 import Layout from "../components/layout";
 import { getAllPostsForHome } from "../lib/api";
 import { CMS_NAME } from "../lib/constants";
 
 export default function Index({ allPosts: { edges }, preview }) {
   const heroPost = edges[0]?.node;
-  const morePosts = edges.slice(1);
+  const morePosts = edges.slice(0);
 
   return (
     <Layout preview={preview}>
@@ -19,7 +20,7 @@ export default function Index({ allPosts: { edges }, preview }) {
       </Head>
       <Container>
         <Intro />
-        {heroPost && (
+        {/* {heroPost && (
           <HeroPost
             title={heroPost.title}
             coverImage={heroPost.featuredImage}
@@ -28,7 +29,8 @@ export default function Index({ allPosts: { edges }, preview }) {
             slug={heroPost.slug}
             excerpt={heroPost.excerpt}
           />
-        )}
+        )} */}
+        <AboutJaysoft />
         {morePosts.length > 0 && <MoreStories posts={morePosts} />}
       </Container>
     </Layout>
