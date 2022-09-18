@@ -1,47 +1,9 @@
-import Head from "next/head";
-import { GetStaticProps } from "next";
-import Container from "../components/container";
-import MoreStories from "../components/more-stories";
-import HeroPost from "../components/hero-post";
-import Intro from "../components/intro";
-import AboutJaysoft from "../components/aboutjaysoft";
-import Layout from "../components/layout";
-import { getAllPostsForHome } from "../lib/api";
-import { CMS_NAME } from "../lib/constants";
-
-export default function Index({ allPosts: { edges }, preview }) {
-  const heroPost = edges[0]?.node;
-  const morePosts = edges.slice(0);
-
-  return (
-    <Layout preview={preview}>
-      <Head>
-        <title>Next.js Blog with Headless CMS</title>
-      </Head>
-      <Container>
-        <Intro />
-        {/* {heroPost && (
-          <HeroPost
-            title={heroPost.title}
-            coverImage={heroPost.featuredImage}
-            date={heroPost.date}
-            author={heroPost.author}
-            slug={heroPost.slug}
-            excerpt={heroPost.excerpt}
-          />
-        )} */}
-        <AboutJaysoft />
-        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-      </Container>
-    </Layout>
-  );
+import { useEffect } from "react";
+export default function redirect() {
+  useEffect(() => {
+    window.location.assign(
+      "https://www.jaybranding.com/en/website-design-service-with-seo-standard/"
+    );
+  });
+  return <></>;
 }
-
-export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const allPosts = await getAllPostsForHome(preview);
-
-  return {
-    props: { allPosts, preview },
-    revalidate: 10,
-  };
-};
